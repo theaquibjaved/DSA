@@ -9,7 +9,8 @@ public:
         }
         
         return false;
-        
+        // TC: O(N)
+        // SC: O(N)
         
         
         
