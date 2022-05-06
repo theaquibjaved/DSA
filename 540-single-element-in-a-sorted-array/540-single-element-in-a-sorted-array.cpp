@@ -2,10 +2,16 @@ class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
         
-        int n = nums.size();
-        int ele = 0;
-        for(auto it : nums)
-            ele = ele ^ it;
-        return ele;
+        int low = 0;
+        int high = nums.size() - 2;
+        
+        while(low <= high){
+            int mid = (low + high) >> 1;
+            if(nums[mid] == nums[mid^1])
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+        return nums[low];
     }
 };
