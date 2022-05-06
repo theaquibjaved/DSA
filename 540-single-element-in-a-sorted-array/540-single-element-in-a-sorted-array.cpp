@@ -4,8 +4,8 @@ public:
         
         int n = nums.size();
         int ele = 0;
-        for(int i = 0; i < n; i++)
-            ele = ele ^ nums[i];
+        for(auto it : nums)
+            ele = ele ^ it;
         return ele;
     }
 };
