@@ -2,31 +2,33 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         
-        //MOORE'S VOTING ALGORITHM
-        // int count = 0;
-        // int candidate = 0;
-        // for(int it : nums){
-        //     if(count = 0)
-        //         candidate = it;
-        //     if(it == candidate)
-        //         count += 1;
-        //     else 
-        //         count -= 1;
-        // }
-        // return candidate;
-        
-         int count = 0;
+       // MOORE'S VOTING ALGORITHM
+        int count = 0;
         int candidate = 0;
-
-        for (int num : nums) {
-            if (count == 0) {
+        
+        for(int num : nums){
+            if(count == 0){
                 candidate = num;
             }
-            if(num==candidate) count += 1; 
-            else count -= 1; 
+                
+            if(num == candidate) count += 1;
+            else count -= 1;
         }
-
+        
         return candidate;
+        
+//          int count = 0;
+//         int candidate = 0;
+
+//         for (int num : nums) {
+//             if (count == 0) {
+//                 candidate = num;
+//             }
+//             if(num==candidate) count += 1; 
+//             else count -= 1; 
+//         }
+
+//         return candidate;
         
         //--------------------
         // unordered_map<int, int> map;
