@@ -10,7 +10,7 @@ public:
         if (map.find(target - numbers[i]) != map.end()) {
    		 res.emplace_back(i);
    		 res.emplace_back(map[target - numbers[i]]);
-   		 //return res;
+   		 return res;
         }
         
         map[numbers[i]] = i;
