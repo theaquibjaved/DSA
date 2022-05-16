@@ -8,7 +8,7 @@ public:
         int longestStreak = 0;
         
         for(int num : nums){
-            if(!hashSet.count(num -1)){
+            if(!hashSet.count(num - 1)){
                 
                 int y = num + 1;
                 
