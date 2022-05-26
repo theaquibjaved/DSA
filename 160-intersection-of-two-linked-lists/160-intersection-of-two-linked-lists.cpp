@@ -8,20 +8,16 @@
  */
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode *getIntersectionNode(ListNode *head1, ListNode *head2) {
         
-        unordered_set<ListNode*> st;
-        while(headA){
-            st.insert(headA);
-            headA = headA->next;
-        }
-        
-        while(headB){
-            if(st.find(headB) != st.end())
-                return headB;
-            headB = headB->next;
-        }
-        
-        return NULL;
+        ListNode* d1 = head1;
+    ListNode* d2 = head2;
+    
+    while(d1 != d2) {
+        d1 = d1 == NULL? head2:d1->next;
+        d2 = d2 == NULL? head1:d2->next;
+    }
+    
+    return d1;
     }
 };
