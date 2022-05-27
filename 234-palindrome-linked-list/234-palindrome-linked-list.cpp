@@ -11,20 +11,21 @@
 class Solution {
 public:
     
- 
+    ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        while(fast->next && fast->next->next){
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+        return slow;
+    }
     
     bool isPalindrome(ListNode* head) {
         
         if(head == NULL || head->next == NULL)
             return true;
         
-        ListNode *slow = head;
-        ListNode *fast = head;
-        
-        while(fast->next && fast->next->next){
-            slow = slow->next;
-            fast = fast->next->next;
-        }
+        ListNode *slow = middleNode(head);
         
         slow->next = reverseList(slow->next);
         slow = slow->next;
