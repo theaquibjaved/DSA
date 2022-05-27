@@ -12,8 +12,8 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         
-        // if(head == NULL || head->next == NULL)
-        //     return true;
+        if(head == NULL || head->next == NULL)
+            return true;
         
         ListNode *slow = head;
         ListNode *fast = head;
