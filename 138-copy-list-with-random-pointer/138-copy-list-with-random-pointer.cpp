@@ -42,19 +42,19 @@ public:
         curr = head;
         Node *original = new Node(0);
         Node *copy = original;
-        Node* front = NULL;
+        // Node* front = NULL;
         
         while(curr){
-            front = curr->next->next;
+            temp = curr->next->next;
             
             //extract the copy
             copy->next = curr->next;
             
             //restore the original
-            curr->next = front;
+            curr->next = temp;
             
             copy = copy->next;
-            curr = front;
+            curr = temp;
         }
         
         return original->next;
