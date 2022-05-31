@@ -18,7 +18,7 @@ class Solution {
 public:
     Node* copyRandomList(Node* head) {
         
-        Node* curr = head, *temp = NULL;
+        Node* curr = head, *temp = head;
         
         //insert copy nodes after each node
         while(curr){
@@ -42,7 +42,6 @@ public:
         curr = head;
         Node *original = new Node(0);
         Node *copy = original;
-        // Node* front = NULL;
         
         while(curr){
             temp = curr->next->next;
