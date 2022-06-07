@@ -2,20 +2,25 @@ class Solution {
 public:
     int trap(vector<int>& arr) {
         
-            int n = arr.size();
-          int prefix[n], suffix[n];
-          prefix[0] = arr[0];
-          for (int i = 1; i < n; i++) {
-            prefix[i] = max(prefix[i - 1], arr[i]);
-          }
-          suffix[n - 1] = arr[n - 1];
-          for (int i = n - 2; i >= 0; i--) {
-            suffix[i] = max(suffix[i + 1], arr[i]);
-          }
-          int waterTrapped = 0;
-          for (int i = 0; i < n; i++) {
-            waterTrapped += min(prefix[i], suffix[i]) - arr[i];
-          }
-          return waterTrapped;
+        int n = arr.size();
+        int left = 0, right = n-1;
+        int maxLeft = 0, maxRight = 0, res = 0;
+        
+        while(left < right){
+            if(arr[left] <= arr[right]){                
+                if(arr[left] >= maxLeft) maxLeft = arr[left];
+                else res += maxLeft - arr[left];
+                
+                left++;
+            }
+            else{
+                if(arr[right] >= maxRight) maxRight = arr[right];
+                else res += maxRight - arr[right];
+                
+                right--;
+            }
+        }
+        
+        return res;
     }
 };
