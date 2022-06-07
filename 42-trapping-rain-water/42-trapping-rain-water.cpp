@@ -6,7 +6,7 @@ public:
         int left = 0, right = n-1;
         int maxLeft = 0, maxRight = 0, res = 0;
         
-        while(left < right){
+        while(left <= right){
             if(arr[left] <= arr[right]){                
                 if(arr[left] >= maxLeft) maxLeft = arr[left];
                 else res += maxLeft - arr[left];
