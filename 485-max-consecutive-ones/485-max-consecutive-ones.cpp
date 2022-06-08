@@ -4,9 +4,9 @@ public:
         
         int n = nums.size(), count = 0, maxCount = 0;
         
-        for(int i = 0; i < n; i++){
+        for(auto it : nums){
             
-            if(nums[i] == 1)
+            if(it == 1)
             {
                 count++;
                 maxCount = max(count, maxCount);
