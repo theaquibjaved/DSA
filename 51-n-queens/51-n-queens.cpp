@@ -39,8 +39,10 @@ public:
             ans.push_back(board);
             return;
         }
+        
         for(int row = 0; row < n; row++){
-            if(isSafe(row, col, board, n)){
+            bool notAttack = isSafe(row, col, board, n);
+            if(notAttack){
                 board[row][col] = 'Q';
                 solve(col+1, board, ans, n);
                 board[row][col] = '.';
