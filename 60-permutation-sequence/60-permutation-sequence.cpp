@@ -1,14 +1,5 @@
 class Solution {
 public:
-    
-    void factorial(int n, vector<int> &numbers){
-        int fact = 1;
-        for(int i = 1; i < n; i++){
-            fact *= i;
-            numbers.push_back(i);
-        }
-    }
-        
     string getPermutation(int n, int k) {
          
         vector<int> numbers;
