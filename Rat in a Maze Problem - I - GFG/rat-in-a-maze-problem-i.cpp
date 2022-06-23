@@ -23,8 +23,9 @@ class Solution{
       int nexti = i + di[ind];
       int nextj = j + dj[ind];
       
-      bool inBou
-      if (nexti >= 0 && nextj >= 0 && nexti < n && nextj < n && !vis[nexti][nextj] && a[nexti][nextj] == 1) {
+      bool inBoundary = nexti >= 0 && nextj >= 0 && nexti < n && nextj < n;
+      bool canMove = inBoundary && !vis[nexti][nextj] && a[nexti][nextj] == 1;
+      if (canMove) {
         vis[i][j] = 1;
         solve(nexti, nextj, a, n, ans, move + dir[ind], vis, di, dj);
         vis[i][j] = 0;
