@@ -21,10 +21,10 @@ public:
         int r2 = (cut2 == n)? INT_MAX:nums2[cut2];
         
         if(l1<=r2 && l2<=r1) {
-            if((m+n)%2 != 0)
-                return max(l1,l2);
-            else 
+            if((m+n)%2 == 0)                
                 return (max(l1,l2)+min(r1,r2))/2.0;
+            else 
+                return max(l1,l2);
         }
         else if(l1>r2) high = cut1-1;
         else low = cut1+1;
