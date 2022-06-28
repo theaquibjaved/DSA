@@ -9,8 +9,8 @@ public:
                 char ch = st.top(); 
                 st.pop(); 
                 bool balancedBracket = (it == ')' and ch == '(') or  (it == ']' and ch == '[') or (it == '}' and ch == '{');
-                if(balancedBracket) continue;
-                else return false;
+                if(!balancedBracket) return false;
+                //else return false;
             }
         }
         return st.empty(); 
