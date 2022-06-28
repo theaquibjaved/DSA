@@ -8,8 +8,8 @@ public:
                 if(st.size() == 0) return false; 
                 char ch = st.top(); 
                 st.pop(); 
-                bool balancedBracket = (it == ')' and ch == '(') or  (it == ']' and ch == '[') or (it == '}' and ch == '{');
-                if(!balancedBracket) return false;
+                bool nobalancedBracket = (it == ')' and ch != '(') or  (it == ']' and ch != '[') or (it == '}' and ch != '{');
+                if(nobalancedBracket) return false;
                 //else return false;
             }
         }
