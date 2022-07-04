@@ -38,6 +38,8 @@ public:
             if(!rotten.empty()) days++;
         }
         
-        return tot == cnt ? days : -1;
+        if(tot == cnt) return days;
+        
+        return -1;
     }
 };
