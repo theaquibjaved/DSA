@@ -2,8 +2,11 @@ class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
         if(grid.empty()) return 0;
+        
         int m = grid.size(), n = grid[0].size(), days = 0, tot = 0, cnt = 0;
+        
         queue<pair<int, int>> rotten;
+        
         for(int i = 0; i < m; ++i){
             for(int j = 0; j < n; ++j){
                 if(grid[i][j] != 0) tot++;
@@ -23,11 +26,11 @@ public:
                 for(int i = 0; i < 4; ++i){
                     int nx = x + dx[i], ny = y + dy[i];
                     
-                    bool xyz = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
+                    bool notValid = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
                     
-                    if(!xyz) {
+                    if(!notValid) {
                          grid[nx][ny] = 2;
-                    rotten.push({nx, ny});
+                        rotten.push({nx, ny});
                     }
                    
                 }
