@@ -26,9 +26,9 @@ public:
                 for(int i = 0; i < 4; ++i){
                     int nx = x + dx[i], ny = y + dy[i];
                     
-                    bool isValid = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
+                    bool xyz = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
                     
-                    if(!isValid) {
+                    if(!xyz) {
                          grid[nx][ny] = 2;
                         rotten.push({nx, ny});
                     }
