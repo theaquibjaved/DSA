@@ -1,50 +1,53 @@
 class Solution {
 public:
     int orangesRotting(vector<vector<int>>& grid) {
-        if(grid.empty()) return 0;
+        if(grid.empty())
+            return 0;
         
-        int m = grid.size(), n = grid[0].size(), days = 0, tot = 0, cnt = 0;
+        int n = grid.size();
+        int m = grid[0].size();
         
-        queue<pair<int, int>> rotten;
+        int time = 0, totalOranges = 0, madeRotten = 0;
+        queue<pair <int, int>> rotten;
         
-        for(int i = 0; i < m; ++i){
-            for(int j = 0; j < n; ++j){
-                bool emptyCell = grid[i][j] == 0;
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                bool cellEmpty = grid[i][j] == 0;
                 bool isRotten = grid[i][j] == 2;
                 
-                if(!emptyCell) tot++;
+                if(!cellEmpty) totalOranges++;
                 if(isRotten) rotten.push({i, j});
             }
         }
         
-        int dx[4] = {0, 0, 1, -1};
+        int dx[4] = {0, 0, 1 , -1};
         int dy[4] = {1, -1, 0, 0};
         
         while(!rotten.empty()){
             int k = rotten.size();
-            cnt += k; 
+            madeRotten += k;
             while(k--){
-                int x = rotten.front().first, y = rotten.front().second;
+                int x = rotten.front().first;
+                int y = rotten.front().second;
                 rotten.pop();
-                for(int i = 0; i < 4; ++i){
-                    int nx = x + dx[i], ny = y + dy[i];
-                    
-                    //bool xyz = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
-                    //bool inBoundary = nx >= 0 && ny >= 0 && nx < m && ny < n;
-                    //bool isFresh = grid[nx][ny] == 1;
-                    bool isValid = nx >= 0 && ny >= 0 && nx < m && ny < n && grid[nx][ny] == 1;
-                    
-                    if(isValid) {
-                         grid[nx][ny] = 2;
+                
+                for(int i = 0; i < 4; i++){
+                    int nx = x + dx[i];
+                    int ny = y + dy[i];
+
+                    bool isValid = nx >= 0 && ny >= 0 && nx < n && ny < m && grid[nx][ny] == 1;
+                    if(isValid){
+                        grid[nx][ny] = 2;
                         rotten.push({nx, ny});
                     }
-                   
                 }
             }
-            if(!rotten.empty()) days++;
+            if(!rotten.empty())
+                time++;
         }
         
-        if(tot == cnt) return days;
+        if(totalOranges == madeRotten)
+            return time;
         
         return -1;
     }
