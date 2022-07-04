@@ -32,8 +32,9 @@ public:
                     //bool xyz = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
                     //bool inBoundary = nx >= 0 && ny >= 0 && nx < m && ny < n;
                     //bool isFresh = grid[nx][ny] == 1;
+                    bool isValid = nx >= 0 && ny >= 0 && nx < m && ny < n && grid[nx][ny] == 1;
                     
-                    if(nx >= 0 && ny >= 0 && nx < m && ny < n && grid[nx][ny] == 1) {
+                    if(isValid) {
                          grid[nx][ny] = 2;
                         rotten.push({nx, ny});
                     }
