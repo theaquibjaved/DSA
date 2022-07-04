@@ -22,9 +22,13 @@ public:
                 rotten.pop();
                 for(int i = 0; i < 4; ++i){
                     int nx = x + dx[i], ny = y + dy[i];
-                    if(nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1) continue;
-                    grid[nx][ny] = 2;
+                    
+                    bool xyz = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
+                    if(!xyz) {
+                         grid[nx][ny] = 2;
                     rotten.push({nx, ny});
+                    }
+                   
                 }
             }
             if(!rotten.empty()) days++;
