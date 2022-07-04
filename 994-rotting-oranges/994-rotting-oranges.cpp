@@ -9,8 +9,11 @@ public:
         
         for(int i = 0; i < m; ++i){
             for(int j = 0; j < n; ++j){
-                if(grid[i][j] != 0) tot++;
-                if(grid[i][j] == 2) rotten.push({i, j});
+                bool emptyCell = grid[i][j] == 0;
+                bool isRotten = grid[i][j] == 2;
+                
+                if(!emptyCell) tot++;
+                if(isRotten) rotten.push({i, j});
             }
         }
         
