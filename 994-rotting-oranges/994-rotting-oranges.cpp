@@ -30,6 +30,8 @@ public:
                     int nx = x + dx[i], ny = y + dy[i];
                     
                     //bool xyz = nx < 0 || ny < 0 || nx >= m || ny >= n || grid[nx][ny] != 1;
+                    //bool inBoundary = nx >= 0 && ny >= 0 && nx < m && ny < n;
+                    //bool isFresh = grid[nx][ny] == 1;
                     
                     if(nx >= 0 && ny >= 0 && nx < m && ny < n && grid[nx][ny] == 1) {
                          grid[nx][ny] = 2;
