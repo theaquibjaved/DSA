@@ -23,7 +23,7 @@ class Solution
        
         int i = 0, j = n - 1;
         while (i < j) {
-            if (M[j][i] == 1) // j knows i
+            if (knows(j, i, M)) // j knows i
                 j--;
             else // j doesnt know i so i cant be celebrity
                 i++;
