@@ -10,33 +10,56 @@ using namespace std;
 class Solution 
 {
     public:
+    
+    bool knows(int a, int b, vector<vector<int> >& M){
+        if(M[a][b] == 1)
+            return true;
+        return false;
+    }
+    
     //Function to find if there is a celebrity in the party or not.
     int celebrity(vector<vector<int> >& M, int n) 
     {
        
-        int celeb = -1;
-        
-        for(int i = 0; i < n; i++){
-            bool knowsNoOne = true;
-        bool everyoneKnows = true;
-            //row:
-            for(int j = 0; j < n; j++){
-                if(M[i][j] != 0)
-                    {knowsNoOne = false; break;}
-            }
-            
-            //col:
-            for(int j = 0; j < n; j++){
-                if(i != j && M[j][i] != 1)
-                   { everyoneKnows = false; break;}
-            }
-            
-            //check celeb
-            if(knowsNoOne && everyoneKnows)
-             {   celeb = i;
-             break;}
+        int p = 0, q = n-1; 
+
+    // Finding celebrity.
+    while(p < q) {
+        if(knows(p, q, M)) {
+            // This means p cannot be celebrity.
+            p++;  
         }
-        return celeb;
+        else {
+            // This means q cannot be celebrity.
+            q--; 
+        }
+    }
+
+    int celeb = p;
+    bool knowAny = false, knownToAll = true;
+
+    // Verify whether the celebrity knows any other person.
+    for(int i = 0; i < n; i++) {
+        if(knows(celeb, i, M)) {
+            knowAny = true;
+            break;
+        }
+    }
+
+    // Verify whether the celebrity is known to all the other person.
+    for(int i = 0; i < n; i++) {
+        if(i != celeb and !knows(i, celeb, M)) {
+            knownToAll = false;
+            break;
+        }
+    }
+
+    if(knowAny or !knownToAll) {
+        // If verificatin failed, then it means there is no celebrity at the party.
+        celeb = -1;
+    }
+
+    return celeb;
     }
 };
 
