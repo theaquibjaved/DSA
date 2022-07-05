@@ -36,8 +36,7 @@ class Solution
         // known by everyone but he knows no one
         for (i = 0; i < n; i++) {
             if (i != candidate) {
-                if (M[i][candidate] == 0
-                    || M[candidate][i] == 1)
+                if (!knows(i, candidate, M) || knows(candidate, i, M))
                     return -1;
             }
         }
