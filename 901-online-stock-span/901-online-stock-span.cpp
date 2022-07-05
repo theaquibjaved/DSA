@@ -1,19 +1,24 @@
 class StockSpanner {
 public:
-    stack<pair<int, int>> s;
+    stack<pair<int,int>> s;
+    int index = -1;
+    
     StockSpanner() {
-        
+       // int index = -1;
     }
     
-    
     int next(int price) {
-        int res = 1;
-        while (!s.empty() && s.top().first <= price) {
-            res += s.top().second;
+        index +=1;
+        
+        while(!s.empty() && s.top().second<=price)    //Find the previous greater element
             s.pop();
-        }
-        s.push({price, res});
-        return res;
+        //If there is no previous greater element
+        if(s.empty())
+        {   s.push({index,price});      return index+1;   }
+        
+        int result = s.top().first;
+        s.push({index,price});
+        return index-result; 
     }
 };
 
