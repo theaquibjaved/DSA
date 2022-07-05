@@ -35,10 +35,11 @@ class Solution
         // the candidate is actually a celebrity i.e: he is
         // known by everyone but he knows no one
         for (i = 0; i < n; i++) {
-            if (i != candidate) {
-                if (!knows(i, candidate, M) || knows(candidate, i, M))
+            bool notCeleb = i != candidate && (!knows(i, candidate, M) || knows(candidate, i, M));
+            // if (i != candidate) {
+                if (notCeleb)
                     return -1;
-            }
+            // }
         }
         // if we reach here this means that the candidate
         // is really a celebrity
