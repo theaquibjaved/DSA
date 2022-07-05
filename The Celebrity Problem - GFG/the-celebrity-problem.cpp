@@ -21,45 +21,29 @@ class Solution
     int celebrity(vector<vector<int> >& M, int n) 
     {
        
-        int p = 0, q = n-1; 
-
-    // Finding celebrity.
-    while(p < q) {
-        if(knows(p, q, M)) {
-            // This means p cannot be celebrity.
-            p++;  
+        int i = 0, j = n - 1;
+        while (i < j) {
+            if (M[j][i] == 1) // j knows i
+                j--;
+            else // j doesnt know i so i cant be celebrity
+                i++;
         }
-        else {
-            // This means q cannot be celebrity.
-            q--; 
+        // i points to our celebrity candidate
+        int candidate = i;
+
+        // Now, all that is left is to check that whether
+        // the candidate is actually a celebrity i.e: he is
+        // known by everyone but he knows no one
+        for (i = 0; i < n; i++) {
+            if (i != candidate) {
+                if (M[i][candidate] == 0
+                    || M[candidate][i] == 1)
+                    return -1;
+            }
         }
-    }
-
-    int celeb = p;
-    bool knowAny = false, knownToAll = true;
-
-    // Verify whether the celebrity knows any other person.
-    for(int i = 0; i < n; i++) {
-        if(knows(celeb, i, M)) {
-            knowAny = true;
-            break;
-        }
-    }
-
-    // Verify whether the celebrity is known to all the other person.
-    for(int i = 0; i < n; i++) {
-        if(i != celeb and !knows(i, celeb, M)) {
-            knownToAll = false;
-            break;
-        }
-    }
-
-    if(knowAny or !knownToAll) {
-        // If verificatin failed, then it means there is no celebrity at the party.
-        celeb = -1;
-    }
-
-    return celeb;
+        // if we reach here this means that the candidate
+        // is really a celebrity
+        return candidate;
     }
 };
 
