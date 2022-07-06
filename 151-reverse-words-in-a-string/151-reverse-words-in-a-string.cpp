@@ -26,7 +26,6 @@ public:
             if (currentWord.length() != 0) 
             {
                  ans.insert(0, currentWord + " ");
-                 //ans += currentWord + " ";
             }
            
             i = i + 1;
