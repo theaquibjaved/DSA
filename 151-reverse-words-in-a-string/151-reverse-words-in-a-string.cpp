@@ -1,44 +1,45 @@
 class Solution {
 public:
     string reverseWords(string str) {
-    int n = str.length();
-	string ans;
-	int i = 0;
+    if(str == "" || str == " ")
+    {
+        return "";
+    }
 
-	while (i < n) 
-	{
-		int j = i;
+    string ans;
 
-		// Skip multiple spaces
-		while (j < n && str[j] == ' ') 
-		{
-			j++;
-		}
+    int start = str.length() - 1;
 
-		string currentWord;
+    while(start >= 0)
+    {
+        
+        // Skip multiple spaces
+        if(str[start] == ' ')
+        {
+            start--;
+        }
+        else
+        {
+            
+            // Add space between words
+            if(ans.length() > 0)
+            {
+                ans.push_back(' ');
+            }
 
-		// Get the current word
-		while (j < n && str[j] != ' ') 
-		{
-			currentWord.push_back(str[j]);
-			j++;
-		}
+            int j = start;
 
-		// add current word in the ans with a space
-		if (currentWord.length() != 0) 
-		{
-			ans.insert(0, currentWord + " ");
-		}
+            while(j >= 0 && str[j] != ' ')
+            {
+                j--;
+            }
 
-		i = j + 1;
-	}
+            // add current word to ans
+            ans.append(str.substr(j+1, start-j));
+            start = j;
+        }
+    }
 
-	if (ans.length() == 0) 
-	{
-		return ans;
-	}
-
-	// remove the last space
-	return ans.substr(0, ans.length() - 1);
+    return ans;
     }
 };
