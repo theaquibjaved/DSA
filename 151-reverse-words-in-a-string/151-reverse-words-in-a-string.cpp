@@ -10,7 +10,7 @@ public:
             //int j = i;
 
             // Skip multiple spaces
-            while (i < n && str[i] == ' ') 
+            while (str[i] == ' ') 
             {
                 i++;
             }
