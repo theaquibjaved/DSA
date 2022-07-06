@@ -11,9 +11,7 @@ public:
 
             // Skip multiple spaces
             while (str[i] == ' ') 
-            {
                 i++;
-            }
 
             string currentWord;
 
