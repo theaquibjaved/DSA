@@ -33,10 +33,10 @@ public:
             i = i + 1;
         }
 
-        if (ans.length() == 0) 
-        {
-            return ans;
-        }
+        // if (ans.length() == 0) 
+        // {
+        //     return ans;
+        // }
 
         // remove the last space
         return ans.substr(0, ans.length() - 1);
