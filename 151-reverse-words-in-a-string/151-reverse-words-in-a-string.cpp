@@ -18,7 +18,7 @@ public:
             // Get the current word
             while (i < n && str[i] != ' ') 
             {
-                currentWord.push_back(str[i]);
+                currentWord += (str[i]);
                 i++;
             }
 
