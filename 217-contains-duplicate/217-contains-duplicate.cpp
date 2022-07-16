@@ -2,11 +2,7 @@ class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
         
-//          return nums.size() > set<int>(nums.begin(), nums.end()).size();        
-
-//         // TC: O(N)
-//         // SC: O(N)
-        
+       // return nums.size() > set<int>(nums.begin(), nums.end()).size();            
         
         
         
