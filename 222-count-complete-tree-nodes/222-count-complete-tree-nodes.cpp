@@ -12,35 +12,32 @@
 class Solution {
 public:
     int countNodes(TreeNode* root) {
-        if (root == NULL)
-        return 0;
-    // Find the left height and the
-    // right heights
-    int lh = findLeftHeight(root);
-    int rh = findRightHeight(root);
-    // If left and right heights are
-    // equal return 2^height(1<<height) -1
-    if (lh == rh)
-        return (1 << lh) - 1;
-    // Otherwise, recursive call
-    return 1 + countNodes(root->left)
-           + countNodes(root->right);
+        if(!root)
+            return 0;
+        
+        int leftHeight = findLeftHeight(root);
+        int rightHeight = findRightHeight(root);
+        
+        if(leftHeight == rightHeight)
+            return (1 << leftHeight) - 1; // (2^height) + 1
+        
+        return 1 + countNodes(root->left) + countNodes(root->right);
     }
     
     int findLeftHeight(TreeNode* node){
-       int ht = 0;
-    while (node) {
-        ht++;
-        node = node->left;
-    }
-    // Return the left height obtained
-    return ht;
+        int height = 0;
+        
+        while(node){
+            height++;
+            node = node->left;
+        }
+        return height;
     }
     
     int findRightHeight(TreeNode* node){
         int height = 0;
         
-        if(node){
+        while(node){
             height++;
             node = node->right;
         }
