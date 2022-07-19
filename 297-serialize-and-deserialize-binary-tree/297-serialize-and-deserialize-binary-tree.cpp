@@ -23,9 +23,9 @@ public:
             q.pop();
             
             if(node == NULL)
-                s.append("#,");
+                s.append("# ");
             else
-                s.append(to_string(node->val) + ',');
+                s.append(to_string(node->val) + ' ');
             
             if(node != NULL){
                 q.push(node->left);
@@ -42,7 +42,7 @@ public:
         
         stringstream s(data);
         string str;
-        getline(s, str, ',');
+        getline(s, str, ' ');
         
         TreeNode* root = new TreeNode(stoi(str));
         queue<TreeNode*> q;
@@ -53,7 +53,7 @@ public:
             q.pop();
             
             //left node
-            getline(s, str, ',');
+            getline(s, str, ' ');
             if(str == "#"){
                 node->left = NULL;
             }
@@ -64,7 +64,7 @@ public:
             }
             
             //right node
-            getline(s, str, ',');
+            getline(s, str, ' ');
             if(str == "#"){
                 node->right = NULL;
             }
