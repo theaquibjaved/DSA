@@ -56,7 +56,7 @@ public:
 			root = root->right;
 
 
-			delete temp;
+//delete temp;
 
 
 		}
