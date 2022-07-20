@@ -20,7 +20,7 @@ public:
         
         TreeNode* cur = root;
         
-        while(true){
+        while(cur){
             if(cur->val <= val){
                 if(cur->right)
                     cur = cur->right;
