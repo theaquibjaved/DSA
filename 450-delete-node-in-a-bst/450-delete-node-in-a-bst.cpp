@@ -35,10 +35,10 @@ public:
 		if(root->left == NULL && root->right == NULL) {
 
 
-			//delete root;
+			delete root;
 
 
-			root = NULL;
+			return NULL;
 
 
 		}
@@ -50,10 +50,10 @@ public:
 		else if(root->left == NULL) {
 
 
-			 TreeNode *temp = root;
+//TreeNode *temp = root;
 
 
-			root = root->right;
+			return root->right;
 
 
 //delete temp;
@@ -71,7 +71,7 @@ public:
 			root = root->left;
 
 
-//delete temp;
+        delete temp;
 
 
 		}
