@@ -11,40 +11,43 @@
  */
 class Solution {
 public:
-    TreeNode* bstFromPreorder(vector<int>& preorder) {
-        
-        vector<int> inorder = preorder;
-        sort(inorder.begin(), inorder.end());
-        
-        int preStart = 0, preEnd = preorder.size() - 1;
-        int inStart = 0, inEnd = inorder.size() - 1;
-        
-        map<int, int> map;
-        for(int i = inStart; i <= inEnd; i++)
-            map[inorder[i]] = i;
-        
-        TreeNode* root = constructTree(preorder, preStart, preEnd,
-                            inorder, inStart, inEnd, map);
-        
-        return root;        
+    TreeNode* bstFromPreorder(vector<int>& preOrder) {
+        int preIndex = 0;
+
+    // Return the util function.
+    return util(preOrder, preIndex, INT_MIN, INT_MAX);
     }
     
-    TreeNode* constructTree(vector<int>& preorder, int preStart, int preEnd, 
-                            vector<int>& inorder, int inStart, int inEnd, map<int, int> &map){
-        
-        if(preStart > preEnd || inStart > inEnd)
-            return NULL;
-        
-        TreeNode* root = new TreeNode(preorder[preStart]);
-        int inRoot = map[root->val];
-        int numsLeft = inRoot - inStart;
-        
-        root->left = constructTree(preorder, preStart + 1, preStart + numsLeft, 
-                                   inorder, inStart, inRoot - 1, map);
-        
-        root->right = constructTree(preorder, preStart + numsLeft + 1, preEnd, 
-                                   inorder, inRoot + 1, inEnd, map);
-        
+    TreeNode* util(vector<int> &preOrder, int &preIndex, int startRange, int endRange){
+
+    // If the preIndex is greater than the length of the array return NULL.
+    if (preIndex >= preOrder.size()){
+        return NULL;
+    }
+
+    int currNode = preOrder[preIndex];
+
+    // If the current node lies inside the range then process the node.
+    if (currNode > startRange && currNode < endRange){
+        TreeNode* root = new TreeNode(currNode);
+
+        // Increase the index by 1.
+        preIndex += 1;
+
+        // If left node exists process left.
+        if (preIndex < preOrder.size()){
+            root -> left = util(preOrder, preIndex, startRange, currNode);
+        }
+        // If right node exists process right.
+        if (preIndex < preOrder.size()){
+            root -> right = util(preOrder, preIndex, currNode , endRange);
+        }
+
+        // Return the root.
         return root;
     }
+
+    // If node was not processed return NULL.
+    return NULL;
+}
 };
