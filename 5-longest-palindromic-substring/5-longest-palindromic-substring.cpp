@@ -1,23 +1,7 @@
 class Solution {
 public:
-    
-    int expandAroundCenter(string str, int start, int end) 
-{
-   // int start = left, end = right;
-    int n = str.length();
-
-    // Expand the center.
-    while (start >= 0 && end < n && str[start] == str[end]) 
-    {
-        start--;
-        end++;
-    }
-
-    return end - start - 1;
-}
-    
     string longestPalindrome(string str) {
-        int n = str.length();
+            int n = str.length();
 
     if (n < 1) 
     {
@@ -46,5 +30,18 @@ public:
     }
 
     return str.substr(start, end - start + 1);
+    }
+    
+    int expandAroundCenter(string str, int start, int end){
+        int n = str.length();
+
+    // Expand the center.
+    while (start >= 0 && end < n && str[start] == str[end]) 
+    {
+        start--;
+        end++;
+    }
+
+    return end - start - 1;
     }
 };
