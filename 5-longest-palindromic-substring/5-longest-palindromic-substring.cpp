@@ -1,9 +1,9 @@
 class Solution {
 public:
     
-    int expandAroundCenter(string str, int left, int right) 
+    int expandAroundCenter(string str, int start, int end) 
 {
-    int start = left, end = right;
+   // int start = left, end = right;
     int n = str.length();
 
     // Expand the center.
