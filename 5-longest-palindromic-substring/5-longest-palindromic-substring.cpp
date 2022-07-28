@@ -34,14 +34,12 @@ public:
     
     int expandAroundCenter(string str, int start, int end){
         int n = str.length();
-
-    // Expand the center.
-    while (start >= 0 && end < n && str[start] == str[end]) 
-    {
-        start--;
-        end++;
-    }
-
-    return end - start - 1;
+        
+        
+        while(start >= 0 && end < n &&  str[start] == str[end]){
+            start--;
+            end++;
+        }
+        return end - start - 1;
     }
 };
