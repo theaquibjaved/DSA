@@ -1,5 +1,6 @@
 class Solution {
 public:
+    
     int expandAroundCenter(string str, int left, int right) 
 {
     int start = left, end = right;
@@ -16,7 +17,7 @@ public:
 }
     
     string longestPalindrome(string str) {
-         int n = str.length();
+        int n = str.length();
 
     if (n < 1) 
     {
