@@ -1,21 +1,31 @@
 class Solution {
 public:
     int myAtoi(string s) {
-        int i=0;
-         while(i<s.size() && s[i]== ' ') {
-             i++;
-         }     
-        s = s.substr(i); //i ---> last of string
         
+       
+        int n = s.size();
+        
+        
+        // if(n == 0)
+        //     return 0;
+        
+        //ignoring whitespaces
+        int i = 0;
+        while(i < s.size() && s[i] == ' ')
+            i++;
+        
+        s = s.substr(i);
+        
+        //check for +ve or -ve
         int sign = +1;
         long ans = 0;
         
         if(s[0] == '-') sign = -1;
         
-        int MAX = INT_MAX, MIN = INT_MIN;
         i = (s[0] == '+' || s[0] == '-') ? 1 : 0;
-		
-        while(i < s.length()) {
+        
+        
+        while(i < n){
             if(s[0] == ' ' || !isdigit(s[i])) break;
             
             ans = ans * 10 + s[i]-'0';
