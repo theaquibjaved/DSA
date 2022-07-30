@@ -6,8 +6,8 @@ public:
         int n = s.size();
         
         
-        // if(n == 0)
-        //     return 0;
+        if(n == 0)
+            return 0;
         
         //ignoring whitespaces
         int i = 0;
