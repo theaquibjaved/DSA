@@ -1,38 +1,28 @@
 class Solution {
 public:
-    string longestCommonPrefix(vector<string>& arr) {
-        int n = arr.size();
+    string longestCommonPrefix(vector<string>& strs) {
+        int n = strs.size();
         string longestPrefix = "";
-
-    for(int idx = 0; idx < arr[0].size(); ++idx)
-    {
-        // The variable ch is the character to be searched
-        char ch = arr[0][idx];
         
-        // A boolean value to check whether is it possible to insert ch in longest prefix or not.
-        bool matched = true;
-
-        for(int index = 1; index < n; ++index) 
-        {   
-            // Check if arr[index][idx] is equal to ch
-            if (arr[index].size() < idx or arr[index][idx] != ch)
-            {
-                matched = false;
-                break;
+        int firstStringSize = strs[0].size();
+        
+        for(int i = 0; i < firstStringSize; i++){
+            char ch = strs[0][i];
+            bool match = true;
+            for(int j = 1; j < n; j++){
+                bool notMatchingWithRest = strs[j].size() < i || ch != strs[j][i];
+                if(strs[j].size() < i or strs[j][i] != ch){
+                    match = false;
+                    break;
+                }
             }
+            
+            if(!match)
+                break;
+            else
+                longestPrefix.push_back(ch);
         }
-
-        // If matched is true,insert the character ch into longestPrefix
-        if (matched)
-        {
-            longestPrefix += ch;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    return longestPrefix;
+        
+        return longestPrefix;
     }
 };
