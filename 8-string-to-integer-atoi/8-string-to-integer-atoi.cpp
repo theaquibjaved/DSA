@@ -19,8 +19,8 @@ public:
             if(s[0] == ' ' || !isdigit(s[i])) break;
             
             ans = ans * 10 + s[i]-'0';
-            if(sign == -1 && -1*ans < MIN) return MIN;
-            if(sign == 1 && ans > MAX) return MAX;
+            if(sign == -1 && -1*ans < INT_MIN) return INT_MIN;
+            if(sign == 1 && ans > INT_MAX) return INT_MAX;
             
             i++;
         }
