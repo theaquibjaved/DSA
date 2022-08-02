@@ -1,24 +1,34 @@
 class Solution {
 public:
     string countAndSay(int n) {
-        string res="1";
-        string ans="";
-        if(n==1)return res;
-        while(n-1){
-            n--;
-            for(int i=0;i<res.size();++i){
-                int count=1;
-                char cha=res[i];
-                while(i+1<res.size() && res[i]==res[i+1]){
-                    count++;
-                    i++;
+        if(n == 1)
+            return "1";
+        if(n == 2)
+            return "11";
+        
+        string res = countAndSay(n-1);
+        string ans = "";
+        int count = 1;
+        
+        for(int i = 1; i < res.size(); i++){
+            
+            bool newNumber = res[i] != res[i-1];
+            if(newNumber){
+                ans.push_back('0'+count);
+                ans.push_back(res[i-1]);
+                count = 1;
             }
-            ans+=to_string(count);
-            ans+=cha;
+            else{
+                count++;
+            }
+            
+            bool lastIndex = i == res.size()-1;
+            if(lastIndex){
+                ans.push_back('0'+count);
+                ans.push_back(res[i]);
+            }
         }
-        res=ans;
-        ans="";
-    }
-    return res;
+        
+        return ans;
     }
 };
