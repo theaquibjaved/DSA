@@ -1,30 +1,22 @@
 class Solution {
 public:
     string countAndSay(int n) {
-        if (n == 1)
-            return "1";
-        if (n == 2)
-            return "11";
-    
-        string result = countAndSay(n-1);
-        
-        string newresult = "";
-        int count = 1;
-        for(int i = 1; i < result.size(); ++i){
-            
-            if(result[i]!=result[i-1]){
-                newresult.push_back('0'+count);
-                newresult.push_back(result[i-1]);
-                count = 1;
+        if (n == 0) return "";
+    string res = "1";
+    while (--n) {
+        string cur = "";
+        for (int i = 0; i < res.size(); i++) {
+            int count = 1;
+             while ((i + 1 < res.size()) && (res[i] == res[i + 1])){
+                count++;    
+                i++;
             }
-            else
-                count++;
-    
-            if(i == result.size()-1){
-                newresult.push_back('0'+count);
-                newresult.push_back(result[i]);
-            }
+            // cur += to_string(count) + res[i];
+            cur.push_back('0'+count);
+            cur.push_back(res[i]);
         }
-        return newresult;
+        res = cur;
+    }
+    return res;
     }
 };
