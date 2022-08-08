@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int findKthLargest(vector<int>& nums, int k) {
+   int findKthLargest(vector<int>& nums, int k) {
         int n = nums.size();
         
         k = n - k;
