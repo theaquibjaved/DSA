@@ -13,8 +13,10 @@ public:
         int p = l;
         
         for(int i = l; i < r; i++){
-             if(nums[i] <= pivot)
-                 swap(nums[p++], nums[i]);            
+             if(nums[i] <= pivot){
+                 swap(nums[p++], nums[i]);
+             }
+                             
         }
         
         swap(nums[p], nums[r]);
