@@ -8,62 +8,60 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
-class compare
-{
-public:
-    bool operator()(const ListNode *first, const ListNode *second)
-    {
+class compare{
+    public:
+    bool operator()(ListNode* first, ListNode* second){
         return (first->val > second->val);
     }
 };
+
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& listArray) {
-        int k = listArray.size();
-
-    if (k == 0)
-    {
-        return NULL;
-    }
-
-    priority_queue<ListNode*, vector<ListNode*>, compare> helperPQ;
-
-    // Push into the queue.
-    for (int i = 0; i < k; i++)
-    {
-        if (listArray[i] != NULL)
-        {
-            helperPQ.push(listArray[i]);
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int k = lists.size();
+        
+        if(k == 0)
+            return NULL;
+        
+        priority_queue<ListNode*, vector<ListNode*>, compare> minheap;
+        
+        for(int i = 0; i < k; i++){
+            if(lists[i] != NULL)
+                minheap.push(lists[i]);
         }
-    }
-
-    ListNode *head = NULL, *tail = NULL;
-
-    // Add nodes while queue is non empty.
-    while (helperPQ.size() > 0)
-    {
-        ListNode *minNode = helperPQ.top();
-        helperPQ.pop();
-
-        if (minNode->next != NULL)
-        {
-            helperPQ.push(minNode->next);
-            minNode->next = NULL;
+        
+        ListNode* head = NULL;
+        ListNode* tail = NULL;
+        
+        while(!minheap.empty()){
+            ListNode* cur = minheap.top();
+            minheap.pop();
+            
+            if(cur->next != NULL){
+                minheap.push(cur->next);
+                cur->next = NULL;
+            }
+            
+            // bool firstNode = head == NULL;
+            if(head == NULL){
+                head = cur;
+                tail = cur;
+            }
+            else{
+                tail->next = cur;
+                tail = tail->next;
+            }
         }
-
-        if (head == NULL)
-        {
-            head = minNode;
-            tail = minNode;
-        }
-        else
-        {
-            tail->next = minNode;
-            tail = tail->next;
-        }
-    }
-
-    return head;
+        
+        return head;
     }
 };
+
+
+
+
+
+
+
+
+
