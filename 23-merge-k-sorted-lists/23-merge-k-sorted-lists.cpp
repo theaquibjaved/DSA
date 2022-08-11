@@ -8,44 +8,62 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+class compare
+{
+public:
+    bool operator()(const ListNode *first, const ListNode *second)
+    {
+        return (first->val > second->val);
+    }
+};
 class Solution {
 public:
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-        
-        int n = lists.size();
-        
-        vector<int> vect;
-        
-        if(n == 0)
-            return NULL;
-        
-        for(int i = 0; i < n; i++){
-            ListNode* node = lists[i];
-            
-            while(node){
-                vect.push_back(node->val);
-                node = node->next;
-            }
+    ListNode* mergeKLists(vector<ListNode*>& listArray) {
+        int k = listArray.size();
+
+    if (k == 0)
+    {
+        return NULL;
+    }
+
+    priority_queue<ListNode*, vector<ListNode*>, compare> helperPQ;
+
+    // Push into the queue.
+    for (int i = 0; i < k; i++)
+    {
+        if (listArray[i] != NULL)
+        {
+            helperPQ.push(listArray[i]);
         }
-        
-        sort(vect.begin(), vect.end());
-        int m = vect.size();
-        
-        ListNode *head = NULL, *tail = NULL;
-        
-        for(int i = 0; i < m; i++){
-            ListNode* newNode = new ListNode(vect[i]);
-            
-            if(head == NULL){
-                head = newNode;
-                tail = newNode;
-            }
-            else{
-                tail->next = newNode;
-                tail = newNode;
-            }
+    }
+
+    ListNode *head = NULL, *tail = NULL;
+
+    // Add nodes while queue is non empty.
+    while (helperPQ.size() > 0)
+    {
+        ListNode *minNode = helperPQ.top();
+        helperPQ.pop();
+
+        if (minNode->next != NULL)
+        {
+            helperPQ.push(minNode->next);
+            minNode->next = NULL;
         }
-        
-        return head;
+
+        if (head == NULL)
+        {
+            head = minNode;
+            tail = minNode;
+        }
+        else
+        {
+            tail->next = minNode;
+            tail = tail->next;
+        }
+    }
+
+    return head;
     }
 };
