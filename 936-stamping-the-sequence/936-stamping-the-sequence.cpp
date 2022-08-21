@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> movesToStamp(string stamp, string target) {
         vector<int> res;
-  auto total_stamp = 0, turn_stamp = 3;
+  auto total_stamp = 0, turn_stamp = -1;
   while (turn_stamp) {
       turn_stamp = 0;
       for (int sz = stamp.size(); sz > 0; --sz) 
