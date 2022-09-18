@@ -1,8 +1,7 @@
 class Solution {
 public:
     int trap(vector<int>& arr) {
-        
-        int n = arr.size();
+         int n = arr.size();
         int left = 0, right = n-1;
         int maxLeft = 0, maxRight = 0, res = 0;
         
