@@ -1,56 +1,40 @@
 class Solution {
 public:
-    bool edge(const string& a, const string& b) {
-        if (a.size() != b.size()) {
-            return false;
-        }
-        int d = 0;
-        for (int i = 0; i < a.size(); ++i) {
-            d += a[i] != b[i];
-        }
-        return d == 1;
-    }
-
     int minMutation(string start, string end, vector<string>& bank) {
-        unordered_set<string> genes(bank.begin(), bank.end());
-        genes.insert(start);
-        
-        unordered_map<string, vector<string>> graph;
-        for (auto i = genes.begin(); i != genes.end(); ++i) {
-            auto j = i;
-            for (++j; j != genes.end(); ++j) {
-                if (edge(*i, *j)) {
-                    graph[*i].push_back(*j);
-                    graph[*j].push_back(*i);
-                }
-            }
-        }
-
-
-        queue<string> q;
-        q.push(start);
-
-        int step = 0;
-        unordered_set<string> seen;
-        seen.insert(start);
-
-        while (!q.empty()) {
-            int sz = q.size();
-            for (int i = 0; i < sz; ++i) {
-                if (q.front() == end) {
-                    return step;
-                }
-                
-                for (auto &n : graph[q.front()]) {
-                    if (!seen.count(n)) {
-                        seen.insert(n);
-                        q.push(n);
-                    }
-                }
-                q.pop();
-            }
-            ++step;
-        }
-        return -1;
+        //st holds all valid mutations
+	unordered_set<string> st{bank.begin(),bank.end()};
+	//if end mutaion is not in list return -1;
+	if(!st.count(end)) return -1;
+	//start BFS by pushing the starting mutation
+	queue<string> Q;
+	Q.push(start);
+	int steps=0,s;
+	string cur,t;
+	while(!Q.empty()){
+		s=Q.size();
+		while(s--){
+			cur=Q.front();
+			Q.pop();
+			//If we reach end mutation
+			if(cur==end) return steps;
+			//We erase the cur mutation in order to avoid redundant checking
+			st.erase(cur);
+			//as the length of mutation is 8 and it can take A,C,G,T
+			//at each index we check the possibility of mutation by replcaing it with A,C,G,T
+			for(int i=0;i<8;i++){
+				t=cur;
+				t[i]='A';
+				if(st.count(t)) Q.push(t);
+				t[i]='C';
+				if(st.count(t)) Q.push(t);
+				t[i]='G';
+				if(st.count(t)) Q.push(t);
+				t[i]='T';
+				if(st.count(t)) Q.push(t);
+			}
+		}
+		steps++;
+	}
+	return -1;
     }
 };
